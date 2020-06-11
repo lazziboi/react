@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { userState } from 'react';
 import './App.css';
+import Mes from './message.js';
 
 function App() {
+
+  let [count, setCounter] = userState(0)
+  let [bg, changebg] = userState(false)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className={`bg ${bg ? 'changbg':''}`}>
+  <h1>Backgroud {bg ? 'white':'dark'} </h1>
+  <br />
+  <button onClick={ () => {changebg(!changebg) }}>change Backgroud</button>
+  
+  
+  <Mes counter={count} />
+  <br />
+  <button onClick={ () => {setCounter(++count) }}>increase the count</button>
+  <button onClick={ () => {setCounter(--count) }}>decrease the count</button>
+  </div>
   );
 }
-
 export default App;
